@@ -76,7 +76,7 @@ main {
   background-color: $card_yellow;
   padding: 0.5rem;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 5px;
 
   h3 {
     font-size: medium;

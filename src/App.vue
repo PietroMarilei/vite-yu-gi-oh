@@ -31,9 +31,9 @@ export default {
           store.cardArr = response.data.data
           console.log(this.store.cardArr);
           this.isload = true;
-          console.log(this.isload);
+          ;
         })
-    },1000)
+    },3000)
     
   },
 }
@@ -42,14 +42,14 @@ export default {
 <template>
   <!-- {{ store.cardArr[2]}} -->
   
-  <HeaderComponent />
+  
   <LoaderComponent v-if="isload == false"/>
   <div v-else>
+    <HeaderComponent />
     <MainComponent/>
 
   </div>
 
-  <FooterComponent/>
 
 </template>
 
@@ -58,6 +58,6 @@ export default {
   @use "./assets/scss/partials/variables.scss" as *;
   
   body {
-    background-color: lightslategray;
+    background-color:#0D0D0D;
   }
 </style>
