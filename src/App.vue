@@ -3,6 +3,7 @@ import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
 import { store } from './store';
+import axios from "axios"
 
 export default {
   components: {
@@ -19,19 +20,18 @@ export default {
 
   },
   created() {
-    console.log('test');
     axios
-    .get("https://db.ygoprodeck.com/api/v7/cardinfo.php")
-    .then(response => {
-      console.log('test 2');
-      console.log(response);
-    })
+      .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0")
+      .then(response => {
+        store.cardArr.push(response.data.data)
+        console.log(this.store.cardArr);
+      })
   },
 }
 </script>
 
 <template>
-
+  {{ store.cardArr[0].id}}
   <HeaderComponent/>
 
   <MainComponent/>
