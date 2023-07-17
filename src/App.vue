@@ -23,26 +23,31 @@ export default {
 
   },
   created() {
-    axios
-      .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0")
-      .then(response => {
-        //store.cardArr.push(response.data.data[0])
-        store.cardArr = response.data.data
-        console.log(this.store.cardArr);
-        this.isload = true;
-        console.log(this.isload);
-      })
+    setTimeout(()=>{
+      axios
+        .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0")
+        .then(response => {
+          //store.cardArr.push(response.data.data[0])
+          store.cardArr = response.data.data
+          console.log(this.store.cardArr);
+          this.isload = true;
+          console.log(this.isload);
+        })
+    },1000)
+    
   },
 }
 </script>
 
 <template>
   <!-- {{ store.cardArr[2]}} -->
-  <LoaderComponent v-if="isload = false"/>
   
-  <HeaderComponent v-else/>
+  <HeaderComponent />
+  <LoaderComponent v-if="isload == false"/>
+  <div v-else>
+    <MainComponent/>
 
-  <MainComponent/>
+  </div>
 
   <FooterComponent/>
 
