@@ -23,7 +23,8 @@ export default {
     axios
       .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0")
       .then(response => {
-        store.cardArr.push(response.data.data)
+        //store.cardArr.push(response.data.data[0])
+        store.cardArr = response.data.data
         console.log(this.store.cardArr);
       })
   },
@@ -31,7 +32,7 @@ export default {
 </script>
 
 <template>
-  {{ store.cardArr[0].id}}
+  {{ store.cardArr[2]}}
   <HeaderComponent/>
 
   <MainComponent/>
