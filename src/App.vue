@@ -2,6 +2,7 @@
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
+import LoaderComponent from './components/LoaderComponent.vue';
 import { store } from './store';
 import axios from "axios"
 
@@ -10,10 +11,12 @@ export default {
     HeaderComponent,
     MainComponent,
     FooterComponent,
+    LoaderComponent
   },
   data(){
     return {
       store,
+      isload: false
     }
   }, 
   methods: {
@@ -26,14 +29,18 @@ export default {
         //store.cardArr.push(response.data.data[0])
         store.cardArr = response.data.data
         console.log(this.store.cardArr);
+        this.isload = true;
+        console.log(this.isload);
       })
   },
 }
 </script>
 
 <template>
-  {{ store.cardArr[2]}}
-  <HeaderComponent/>
+  <!-- {{ store.cardArr[2]}} -->
+  <LoaderComponent v-if="isload = false"/>
+  
+  <HeaderComponent v-else/>
 
   <MainComponent/>
 
