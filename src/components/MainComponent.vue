@@ -12,23 +12,23 @@ export default {
     }
   },
   methods: {
-    getArchetype() {
-      console.log(this.selectedType);
-      axios
-        .get('https://db.ygoprodeck.com/api/v7/cardinfo.php', {
-          params: {
-            archetype: this.selectedType,
-          }})
+    // getArchetype() {
+    //   console.log(this.selectedType);
+    //   axios
+    //     .get('https://db.ygoprodeck.com/api/v7/cardinfo.php', {
+    //       params: {
+    //         archetype: this.selectedType,
+    //       }})
           
         
-        .then(response => {
-          //store.cardArr.push(response.data.data[0])
-          store.cardArr = response.data.data
-          console.log(this.store.cardArr);
-          this.isload = true;
+    //     .then(response => {
+    //       //store.cardArr.push(response.data.data[0])
+    //       store.cardArr = response.data.data
+    //       console.log(this.store.cardArr);
+    //       this.isload = true;
           
-        });
-    }
+    //     });
+    // }
   },
   props: {
 
@@ -41,7 +41,7 @@ export default {
   <main>
     <div class="container bg-white">
       <div class="row bg-warning">
-        <form @submit.prevent="getArchetype()" action="">
+        <form @submit.prevent="$emit('mySearch')" action="">
           <select  v-model="selectedType" class="form-select" >         
             <option  v-for="(singleType, i) in store.typeArr" :key="i" :value="singleType.archetype_name">{{ singleType.archetype_name }}</option>         
           </select>
