@@ -5,12 +5,15 @@ import { store } from '../store';
 export default {
   data() {
     return {
-
       store,
+      selectedType: '',
+      
     }
   },
   methods: {
-
+    test() {
+      console.log(this.selectedType);
+    }
   },
   props: {
 
@@ -23,19 +26,21 @@ export default {
   <main>
     <div class="container bg-white">
       <div class="row bg-warning">
-        <div class="dropdown p-2">
-          <button class="btn btn-secondary dropdown-toggle p-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown button
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </div>
+        <form @submit.prevent="test()" action="">
+          <select  v-model="selectedType" class="form-select" >         
+            <option  v-for="(singleType, i) in store.typeArr" :key="i" :value="singleType.archetype_name">{{ singleType.archetype_name }}</option>         
+          </select>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+        
+        
+
+        
 
       </div>
-      <div class="row justify-content-center gy-3 p-5">
+      <div class="row  gy-3 p-5">
         <div class="my_found">
           <h2>Found ??? cards</h2>
         </div>

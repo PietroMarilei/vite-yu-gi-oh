@@ -32,20 +32,28 @@ export default {
           console.log(this.store.cardArr);
           this.isload = true;
           ;
+        });
+        //this populate the types array
+        axios
+        .get("https://db.ygoprodeck.com/api/v7/archetypes.php")
+        .then(response => {
+          store.typeArr = response.data
+          console.log('array dei tipi', this.store.typeArr);
+          this.isload = true;
+          ;
         })
-    },3000)
+    },1000)
     
   },
 }
 </script>
 
 <template>
-  <!-- {{ store.cardArr[2]}} -->
-  
-  
   <LoaderComponent v-if="isload == false"/>
+
   <div v-else>
     <HeaderComponent />
+
     <MainComponent/>
 
   </div>
