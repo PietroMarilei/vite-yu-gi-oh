@@ -7,7 +7,7 @@ export default {
   data() {
     return {
       store,
-      selectedType: '',
+      
       
     }
   },
@@ -29,9 +29,16 @@ export default {
           
     //     });
     // }
+
+    
   },
   props: {
 
+  },
+  computed: {
+    howManyResults() {
+      return this.store.cardArr.length
+    }
   },
 
 }
@@ -41,8 +48,9 @@ export default {
   <main>
     <div class="container bg-white">
       <div class="row bg-warning">
+        <!-- form emit the axios callgetArchetype() in app.vue -->
         <form @submit.prevent="$emit('mySearch')" action="">
-          <select  v-model="selectedType" class="form-select" >         
+          <select  v-model="this.store.selectedType" class="form-select" >         
             <option  v-for="(singleType, i) in store.typeArr" :key="i" :value="singleType.archetype_name">{{ singleType.archetype_name }}</option>         
           </select>
 
@@ -57,7 +65,7 @@ export default {
       </div>
       <div class="row  gy-3 p-5">
         <div class="my_found">
-          <h2>Found ??? cards</h2>
+          <h2>Found {{howManyResults}} cards</h2>
         </div>
 
         <div class="col-sm-12 col-md-4 column" v-for="(singleCard, i) in store.cardArr" :key="i">

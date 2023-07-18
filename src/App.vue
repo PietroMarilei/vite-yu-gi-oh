@@ -16,10 +16,30 @@ export default {
   data(){
     return {
       store,
-      isload: false
+      isload: false,
+      
+
     }
   }, 
   methods: {
+     getArchetype() {
+      console.log(this.store.selectedType);
+      axios
+        .get('https://db.ygoprodeck.com/api/v7/cardinfo.php', {
+          params: {
+            archetype: this.store.selectedType,
+          }
+        })
+
+
+        .then(response => {
+          //store.cardArr.push(response.data.data[0])
+          store.cardArr = response.data.data
+          console.log(this.store.cardArr);
+          this.isload = true;
+
+        });
+    }
 
   },
   created() {
@@ -54,7 +74,7 @@ export default {
   <div v-else>
     <HeaderComponent />
 
-    <MainComponent/>
+    <MainComponent @mySearch="getArchetype()"/>
 
   </div>
 
